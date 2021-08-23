@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div ng-controller="CommonController" class="startup">
+      <ng-view></ng-view>
+      <div id="webOverlay">
+        <div id="webLoader">
+          <img src="img/wait-loader.svg" />
+          <div class="loader-message">Please wait... Loading....</div>
+        </div>
+      </div>
+      <div id="deleteOverlay" class="overlay">
+        <a
+          href="javascript:void(0)"
+          class="closebtn"
+          ng-click="closeDeleteOverlay()"
+          >&times;</a
+        >
+        <div class="overlay-content">
+          <div class="error_message">Are you sure you want to delete ?</div>
+          <div class="action-button">
+            <button
+              class="btn btn-default btn-green"
+              ng-click="confirmDeleteData()"
+            >
+              Yes
+            </button>
+            <button
+              class="btn btn-default btn-red"
+              ng-click="closeDeleteOverlay()"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="gameFreezeOverlay" class="overlay">
+        <a
+          href="javascript:void(0)"
+          class="closebtn"
+          ng-click="closeGameFreezeOverlay()"
+          >&times;</a
+        >
+        <div class="overlay-content">
+          <div class="error_message">
+            Are you sure you want to freeze the game ?
+          </div>
+          <div class="action-button">
+            <button
+              class="btn btn-default btn-green"
+              ng-click="confirmFreezeGameData()"
+            >
+              Yes
+            </button>
+            <button
+              class="btn btn-default btn-red"
+              ng-click="closeGameFreezeOverlay()"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="passwordBlock" class="overlay">
+        <div class="overlay-content">
+          <div class="row">
+            <div class="col-lg-6 col-sm-6 col-md-6">
+              <div class="info_message" id="passwordMessage">
+                Please enter your password
+              </div>
+              <div class="input-group">
+                <input
+                  type="password"
+                  id="userfirst"
+                  pattern="[0-9]*"
+                  ng-model="passfield"
+                  class="form-control text-align-center"
+                  placeholder="Password..."
+                />
+                <span class="input-group-btn">
+                  <button
+                    class="btn btn-default green"
+                    type="button"
+                    ng-click="checkIn()"
+                  >
+                    Let's Go!!
+                  </button>
+                </span>
+              </div>
+              <div
+                class="recover-password"
+                data-toggle="modal"
+                data-target="#RecoverPasswordModel"
+              >
+                sign help
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="welcomeAlertMessage" class="overlay">
+        <a
+          href="javascript:void(0)"
+          class="closebtn"
+          ng-click="closeAlertMessage()"
+          >&times;</a
+        >
+        <div class="overlay-content">
+          <div id="welcomeAlertTitle"></div>
+          <div class="error_message" id="welcomeAlertDescription">
+            Loading...
+          </div>
+          <div class="action-button">
+            <button
+              class="btn btn-default btn-green"
+              ng-click="closeAlertMessage()"
+            >
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="markedFavourite" class="overlay">
+        <a
+          href="javascript:void(0)"
+          class="closebtn"
+          ng-click="closeAlertMessage()"
+          >&times;</a
+        >
+        <div class="overlay-content">
+          <div class="white">Updated...</div>
+        </div>
+      </div>
+      <div class="modal" id="firstTimeUserModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content first-time-user">
+            <span class="green">New User</span>
+            <div class="form-content">
+              <form
+                role="form"
+                class="form-horizontal firts-form-user-form"
+                name="firstTimeValidation"
+                novalidate
+              >
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <span
+                      class="error-message"
+                      ng-show="firstTimeValidation.FirstName.$error.maxlength"
+                    >
+                      max 30 character allowed.
+                    </span>
+                    <span
+                      class="error-message"
+                      ng-show="firstTimeValidation.FirstName.$dirty && firstTimeValidation.FirstName.$error.required"
+                    >
+                      please enter your name
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      ng-model="FirstName"
+                      name="FirstName"
+                      required
+                      ng-maxlength="30"
+                      id="FirstName"
+                      placeholder="Name"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <span
+                      class="error-message"
+                      ng-show="firstTimeValidation.IdUser.$dirty && firstTimeValidation.IdUser.$error.required"
+                    >
+                      please enter user id
+                    </span>
+                    <span
+                      class="error-message"
+                      ng-show="firstTimeValidation.IdUser.$error.maxlength"
+                    >
+                      max 8 character allowed.
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      ng-model="IdUser"
+                      name="IdUser"
+                      required
+                      placeholder="User Id"
+                      ng-maxlength="8"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <span
+                      class="error-message"
+                      ng-show="firstTimeValidation.IdEmail.$dirty && firstTimeValidation.IdEmail.$error.required"
+                    >
+                      please enter email id
+                    </span>
+                    <span
+                      class="error-message"
+                      ng-show="firstTimeValidation.IdEmail.$error.maxlength"
+                    >
+                      max 30 character allowed.
+                    </span>
+                    <span
+                      class="error-message"
+                      ng-show="firstTimeValidation.IdEmail.$error.pattern"
+                      >please enter valid email id
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
+                      ng-model="IdEmail"
+                      name="IdEmail"
+                      required
+                      placeholder="Email Id"
+                      ng-maxlength="30"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <span
+                      class="error-message"
+                      ng-show="firstTimeValidation.IdMobile.$dirty && firstTimeValidation.IdMobile.$error.required"
+                    >
+                      please enter mobile number
+                    </span>
+                    <span
+                      class="error-message"
+                      ng-show="firstTimeValidation.IdMobile.$dirty && firstTimeValidation.IdMobile.$error.pattern"
+                    >
+                      mobile number should be numeric
+                    </span>
+                    <span
+                      class="error-message"
+                      ng-show="firstTimeValidation.IdMobile.$error.maxlength"
+                    >
+                      max 10 character allowed.
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      ng-model="IdMobile"
+                      name="IdMobile"
+                      ng-pattern="/\d{10}/"
+                      required
+                      placeholder="Mobile Number"
+                      ng-maxlength="10"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-10 text-align-center">
+                    <button
+                      type="submit"
+                      ng-click="addMe()"
+                      data-dismiss="modal"
+                      ng-disabled="!firstTimeValidation.$valid"
+                      class="btn btn-default set-base-color1 set-color-white"
+                    >
+                      Save Changes
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        id="RecoverPasswordModel"
+        class="modal fade recover-password-modal"
+        id="moreOnExpences"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content first-time-user">
+            <span class="green">Recover Password</span>
+            <div class="form-content">
+              <form
+                role="form"
+                class="form-horizontal firts-form-user-form"
+                name="PasswordRecoverModel"
+                novalidate
+              >
+                <div class="form-group">
+                  <div class="col-sm-12 green">
+                    {{FirstTimeSecurityQOneRecover}}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <input
+                      type="password"
+                      class="form-control"
+                      ng-model="FirstTimeSecurityAOneRecover"
+                      name="FirstTimeSecurityAOneRecover"
+                      required
+                      id="FirstTimeSecurityAOneRecover"
+                      placeholder="Provide Security Answer"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12 green">
+                    {{FirstTimeSecurityQTwoRecover}}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <input
+                      type="password"
+                      class="form-control"
+                      ng-model="FirstTimeSecurityATwoRecover"
+                      name="FirstTimeSecurityATwoRecover"
+                      required
+                      id="FirstTimeSecurityATwoRecover"
+                      placeholder=" Provide Security Answer"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-10 text-align-center">
+                    <button
+                      type="submit"
+                      ng-click="RecoverPwd()"
+                      data-dismiss="modal"
+                      ng-disabled="!PasswordRecoverModel.$valid"
+                      class="btn btn-default set-base-color1 set-color-white"
+                    >
+                      Recover Password
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="securityCheckBlocks">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content first-time-user">
+            <div class="info_message">Please Authorise your self</div>
+            <div class="input-group">
+              <input
+                type="password"
+                ng-model="authorise"
+                class="form-control text-align-center"
+                placeholder="Password..."
+              />
+              <span class="input-group-btn">
+                <button
+                  class="btn btn-default green"
+                  type="button"
+                  ng-click="authoriseMe()"
+                >
+                  Let's Go!!
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      type="text/javascript"
+      src="bower_components/requirejs/require.js"
+    ></script>
+    <script type="text/javascript" src="app/js/index.js"></script>
+  </body>
+</html>
