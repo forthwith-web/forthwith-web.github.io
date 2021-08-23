@@ -1,0 +1,49 @@
+<div class="body-back set-cover-background">
+    <div class="notes-header app-header set-base-color5 set-color-white">
+        <a href="#DailyExpenceSec" id="directMe" class="left-float home-page-link"><span class="glyphicon glyphicon-chevron-left set-color-white" aria-hidden="true"></span></a>
+        Favourite Dailytose's
+        <a data-toggle="modal" data-target="#moreOnExpences" class="more-link pull-right"><img src="img/more-icon.png" /> </a>
+    </div>
+    <div class="input-group">
+        <div class="input-group-addon exp-search-btn green" ng-click="searchExpenceDate()">
+            Search
+        </div>
+        <input type="text" ng-model="expenceSearch" id="ExpenceFor" class="datepicker form-control-custom" placeholder="Search Expences">
+    </div>
+    <article class="list-collection">
+        <div class="row set-margin-none" ng-repeat="expence in dbExpences | filter:expenceSearch | orderBy:ExpenceAddedOn">
+            <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3 col-1 col-row">
+                <a class="arrow-link" ng-show="!showCheckbox"><span>{{$index+1}}</span> </a>
+                <label for="expenceCheck{{$index}}" class="btn" ng-show="showCheckbox">
+                    <input type="checkbox" id="expenceCheck{{$index}}" ng-model="expence.checkboxStatus" class="badgebox">
+                    <span class="badge">&check;</span></label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7 col-2 col-row" ng-click="gotoViewExpences(expence.DailyExpenceId)">
+                <span class="notes-title">{{expence.ExpenceTitle}}</span><span class="notes-date-badge">{{expence.ExpenceAddedOn}}</span>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2 col-3 col-row">
+                <label class="fav-icon" ng-show="showFavIcon"> <img src="img/star-inactive-24.png" ng-if="expence.IsFavourite == 'false' || expence.IsFavourite == false" ng-click="markThisFavourite(expence,true);expence.IsFavourite=true;" class="img-thumbnail img-check"> <img src="img/star-active-24.png" ng-click="markThisFavourite(expence,false);expence.IsFavourite=false;" ng-if="expence.IsFavourite == 'true' || expence.IsFavourite == true" alt="..." class="img-thumbnail img-check">
+                </label>
+            </div>
+        </div>
+    </article>
+</div>
+<!--expence selection -->
+<div class="modal fade" id="moreOnExpences" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <ul class="list-group custom-list">
+            <li class="list-group-item" ng-show="!recordStatus"  ng-click="navigatePage('DailyExpenceSec')" data-dismiss="modal">
+                <a> No Favourite Expences - Go Back </a>
+            </li>
+            <li class="list-group-item" ng-show="!showFavIcon && recordStatus" ng-click="showFavIcon = !showFavIcon" data-dismiss="modal">
+                <a> Unmark Favourites </a>
+            </li>
+            <li class="list-group-item" ng-show="recordStatus && showFavIcon" ng-click="showFavIcon=!showFavIcon" data-dismiss="modal">
+                <a> Done </a>
+            </li>
+            <li class="list-group-item" ng-show="recordStatus" ng-click="navigatePage('DailyExpenceSec')" data-dismiss="modal">
+                <a> View All Expences </a>
+            </li>
+        </ul>
+    </div>
+</div>

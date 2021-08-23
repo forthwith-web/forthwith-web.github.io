@@ -1,0 +1,36 @@
+<div class="body-back">
+    <div class="fixed-header startup">
+        <div class="notes-header app-header set-base-color1 set-color-white">
+            <a href="#ViewNotes/{{dataObj.NoteId}}" id="directMe" class="left-float home-page-link"><span class="glyphicon glyphicon-chevron-left set-color-white" aria-hidden="true"></span></a>
+            Edit Note
+            <a href="" class="more-link pull-right"></a>
+        </div>
+    </div>
+<div id="scrollable">
+    <div class="form-content margin-top-35">
+        <form role="form" class="" name="NotesValidation" novalidate>
+            <div class="form-group">
+                <label for="NotesTitle" class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-10">
+                    <span class="error-message" ng-show="NotesValidation.NotesTitleField.$error.maxlength"> max 50 character allowed. </span>
+                    <span class="error-message" ng-show="NotesValidation.NotesTitleField.$dirty && NotesValidation.NotesTitleField.$error.required"> please enter note title</span>
+                    <input type="text" class="form-control-custom" ng-model="NotesTitleField" name="NotesTitleField" required ng-maxlength=50 id="NotesTitleField" placeholder="Note Title">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="NotesDesc" class="col-sm-2 control-label">Description </label>
+                <div class="col-sm-10">
+                    <span class="error-message" ng-show="NotesValidation.NotesDescField.$dirty && NotesValidation.NotesDescField.$error.required"> please enter note descriptions. </span>
+                    <textarea class="form-control-custom" placeholder="Note Description" ng-model="NotesDescField" name="NotesDescField" required rows="8"></textarea>
+                </div>
+            </div>            
+            <div class="col-sm-12 col-md-12 col-lg-12 text-align-right set-btn-padding">
+                <button type="submit" ng-click="fireUpdateNotes()" ng-disabled="!NotesValidation.$valid" class="btn btn-default set-base-color1 set-color-white">
+                    Update Note
+                </button>
+            </div>            
+        </form>
+    </div>
+    <div class="ftscroller-fix"></div>
+</div>
+</div>

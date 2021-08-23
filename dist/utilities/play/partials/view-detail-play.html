@@ -1,0 +1,73 @@
+<div class="body-back">
+    <div class="fixed-header startup">
+        <div class="notes-header app-header set-base-color5 set-color-white">
+            <a href="#ViewPlays/{{playDataObj.GameId}}" id="directMe" class="left-float home-page-link"><span class="glyphicon glyphicon-chevron-left set-color-white" aria-hidden="true"></span></a>
+            Game Details
+            <a href="" class="more-link pull-right"></a>
+        </div>
+    </div>
+    <article class="expento-info-container set-top-margin">
+        <div class="panel panel-info">
+            <div class="custom-modal-header set-base-color5 set-color-white">
+                Play Info
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>For</th>
+                                <th>Detail</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Game Title</td>
+                                <td>{{playTitle}}</td>                                
+                            </tr>
+                            <tr>
+                                <td>Game Description</td>
+                                <td>{{playDescription}}</td>                                
+                            </tr>
+                            <tr>
+                                <td>Game Status</td>
+                                <td>{{playStatus}}</td>                                
+                            </tr>
+                            <tr>
+                                <td>Game Played On</td>
+                                <td>{{playDate}}</td>                                
+                            </tr>
+                            <tr>
+                                <td>Total Player</td>
+                                <td>{{playerCount}}</td>                                
+                            </tr>
+                            <tr>
+                                <td>Player's Name</td>
+                                <td class="green"><pre class="set-margin-none">{{playersName}}</pre></td>                                
+                            </tr>
+                            <tr>
+                                <td>Winner Criteria</td>
+                                <td>{{winnerCriteria}}</td>                                
+                            </tr>
+                            <tr class="bold">
+                                <td>Lowest Score</td>
+                                <td class="red">{{lowestScore}}</td>                                
+                            </tr> 
+                            <tr class="bold">
+                                <td>Highest Score</td>
+                                <td class="green">{{highestScore}}</td>                                
+                            </tr>  
+                            <tr class="bold">
+                                <td>Winner's Name</td>
+                                <td class="green">{{winnerNames}}</td>                                
+                            </tr>                                                       
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-footer set-text-align-right">
+                <a href="#ViewPlays/{{playDataObj.GameId}}" class="btn btn-default set-base-color1 set-color-white">Back</a>             
+            </div>
+        </div>
+    </article>
+</div>

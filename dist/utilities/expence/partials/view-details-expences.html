@@ -1,0 +1,58 @@
+<div class="body-back">
+    <div class="fixed-header startup">    
+        <div class="notes-header app-header set-base-color5 set-color-white">
+            <a href="#ViewExpence/{{expDataObj.ExpenceRefId}}" id="directMe" class="left-float home-page-link"><span class="glyphicon glyphicon-chevron-left set-color-white" aria-hidden="true"></span></a>
+            Expence Details
+            <a href="" class="more-link pull-right"></a>
+        </div>
+    </div>
+    <article class="expento-info-container set-top-margin">
+        <div class="panel panel-info">
+            <div class="custom-modal-header set-base-color5 set-color-white">
+                Expence Info
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>For</th>
+                                <th>Detail</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Expence Title</td>
+                                <td>{{ExpenceTitle}}</td>                                
+                            </tr>
+                            <tr>
+                                <td>Expence Description</td>
+                                <td>{{ExpenceDescription}}</td>                                
+                            </tr>
+                            <tr>
+                                <td>Total Transaction</td>
+                                <td>{{totalTransaction}}</td>                                
+                            </tr>
+                            <tr>
+                                <td>Last Updated</td>
+                                <td>{{lastUpdated}}</td>                                
+                            </tr>
+                            <tr>
+                                <td>Total Expenditure</td>
+                                <td class="red">{{totalDrs}}/-</td>                                
+                            </tr>
+                             <tr>
+                                <td>Total Asset</td>
+                                <td class="green">{{totalCrs}}/-</td>                                
+                            </tr>
+                             <tr class="bold">
+                                <td>Final Balance</td>
+                                <td ng-class="{'red' : !greeFlag, 'green' : greeFlag}">{{finalAmount}}/-</td>                             
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>

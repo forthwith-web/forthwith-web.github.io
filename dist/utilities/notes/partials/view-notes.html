@@ -1,0 +1,46 @@
+<div class="body-back">
+    <div class="fixed-header startup">
+        <div class="notes-header app-header set-base-color1 set-color-white">
+            <a href="#NotesSec" id="directMe" class="left-float home-page-link"><span class="glyphicon glyphicon-chevron-left set-color-white" aria-hidden="true"></span></a>
+            Note's Detail
+            <a data-toggle="modal" data-target="#notesOperation" class="more-link pull-right"><img src="img/more-icon.png" /> </a>
+        </div>
+    </div>
+    <div class="form-content set-padding margin-top-35">
+        <form role="form" class="form-horizontal" name="NotesValidation" novalidate>
+
+            <div class="list-group">
+                <a class="list-group-item"> <h5 class="set-title-style green bold">{{selectedNote.NoteTitle}}</h5>    
+                    <pre class="list-group-item-text notes-description-text">{{selectedNote.NoteDescription}}</pre>
+                <p class="list-group-item-text set-top-bottom-margin">
+                    <span class="green">Added on</span>
+                    {{selectedNote.NoteAddedOn}}
+                </p>
+                <p class="list-group-item-text set-top-bottom-margin">
+                    <span class="green">Last Updated</span>
+                    {{selectedNote.LastUpdated}}
+                </p>
+                <div class="text-align-right">
+                    <button type="submit" ng-click="gotoEditPage()" class="btn set-base-color1 set-color-white">
+                        Edit Note
+                    </button>
+                </div> </a>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="notesOperation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <ul class="list-group custom-list">
+            <li class="list-group-item" ng-click="openDeleteOverlay()" data-dismiss="modal">
+                <a> Delete It </a>
+            </li>
+            <li class="list-group-item" ng-show="!isFavourite" ng-click="addNotesToFavouriteList(true)" data-dismiss="modal">
+                <a> Mark It Favourite </a>
+            </li>
+            <li class="list-group-item" ng-show="isFavourite" ng-click="addNotesToFavouriteList(false)" data-dismiss="modal">
+                <a> UnMark It Favourite </a>
+            </li>
+        </ul>
+    </div>
+</div>

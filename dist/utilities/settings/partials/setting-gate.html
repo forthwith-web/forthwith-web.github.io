@@ -1,0 +1,153 @@
+<div class="body-back set-cover-background">
+    <div class="fixed-header startup">
+        <div class="notes-header app-header set-base-color1 set-color-white">
+            <a href="#HomePage" id="directMe" class="left-float home-page-link"><img src="img/home.png"/></a>
+            Settings
+            <a href="" class="more-link pull-right"></a>
+        </div>
+    </div>
+    <article class="margin-top-35">
+        <ul class="list-group">
+            <li class="list-group-item" ng-click="setPwd()">
+                <a>Set/Change Password</a>
+            </li>
+            <li class="list-group-item set-overflow-hidden">
+                Lock App 
+                <div class="btn-group pull-right" data-toggle="buttons">
+                    <label class="btn btn-primary" ng-class="{'active' : checkedState=='true', 'needto' : firstT}" ng-click="setActiveState(true)">
+                        <input type="radio" name="options" id="option1" ng-model="checkedState" value="true" autocomplete="off">
+                        On </label>
+                    <label class="btn btn-primary" ng-class="{'active' : checkedState=='false', 'actives' : firstT}" ng-click="setActiveState(false)">
+                        <input type="radio" name="options" id="option2" ng-model="checkedState" value="false" autocomplete="off">
+                        Off </label>
+                </div>
+            </li>
+            <li class="list-group-item set-overflow-hidden">
+                Dailytose Transaction Info 
+                <div class="btn-group pull-right" data-toggle="buttons">
+                  <label class="btn btn-primary" ng-class="{'active' : dailyTransOption=='true'}" ng-click="setDailyTransOption(true)">
+                    <input type="radio" name="dailytoseoptions" ng-model="dailyTransOption" id="option3"  value="true" autocomplete="off" checked>On
+                  </label>
+                  <label class="btn btn-primary" ng-class="{'active' : dailyTransOption=='false'}" ng-click="setDailyTransOption(false)">
+                    <input type="radio" name="dailytoseoptions" id="option4" ng-model="dailyTransOption" value="false" autocomplete="off">Off
+                  </label>                  
+                </div>
+            </li>
+            <li class="list-group-item set-overflow-hidden">
+                Expentose Transaction Info 
+                <div class="btn-group pull-right" data-toggle="buttons">
+                  <label class="btn btn-primary" ng-class="{'active' : expentoTransOption=='true'}" ng-click="setTransOption(true)">
+                    <input type="radio" name="expentoseoptions" ng-model="expentoTransOption" id="option5"  autocomplete="off" value="true" checked>On
+                  </label>
+                  <label class="btn btn-primary" ng-class="{'active' : expentoTransOption=='false'}" ng-click="setTransOption(false)">
+                    <input type="radio" name="expentoseoptions" ng-model="expentoTransOption" id="option6"  value="false" autocomplete="off">Off
+                  </label>                  
+                </div>
+            </li>
+            <!--<li class="list-group-item set-overflow-hidden" ng-click="shareOnAppWhatsappNumber('@Joy')">
+                <div class="btn-group pull-right" data-toggle="buttons">
+                  <label class="btn set-base-color1 set-color-white">Connect Me @whatsapp</label>                  
+                </div>                
+            </li>-->
+        </ul>
+    </article>
+</div>
+<div class="modal" id="PasswordResetModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content first-time-user">
+            <span class="green">Update Password</span>
+            <div class="form-content">
+                <form role="form" class="form-horizontal firts-form-user-form" name="PasswordFormValidation" novalidate>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                             <span class="green">password should be numeric</span>
+                            <span class="error-message" ng-show="PasswordFormValidation.PasswordCurrent.$error.required  && PasswordFormValidation.PasswordCurrent.$dirty">please provide current password</span>
+                            <input type="password" pattern="[0-9]*" class="form-control" ng-model="PasswordCurrent" name="PasswordCurrent" required id="PasswordCurrent" placeholder="Current Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <span class="error-message" ng-show="PasswordFormValidation.PasswordNewCurrent.$error.required  && PasswordFormValidation.PasswordNewCurrent.$dirty">new password field should not be empty</span>
+                            <input type="password" pattern="[0-9]*" class="form-control" ng-model="PasswordNewCurrent" name="PasswordNewCurrent" required id="PasswordNewCurrent" placeholder="New Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <span class="error-message" ng-show="PasswordFormValidation.PasswordConfirm.$error.required  && PasswordFormValidation.PasswordConfirm.$dirty">confirm password field should not be empty</span>
+                            <input type="password" pattern="[0-9]*" class="form-control" ng-model="PasswordConfirm" name="PasswordConfirm" id="PasswordConfirm" required placeholder="Confirm Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10 text-align-center">
+                            <button type="submit" ng-click="savePwd()" data-dismiss="modal" ng-disabled="!PasswordFormValidation.$valid" class="btn btn-default set-base-color1 set-color-white">
+                                Save Password
+                            </button>
+                            <button type="submit" data-dismiss="modal" class="btn btn-default">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="FirstTimePasswordSetModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content first-time-user">
+            <span class="green">First Time User</span>
+            <div class="form-content">
+                <form role="form" class="form-horizontal firts-form-user-form" name="FirstTimePasswordFormValidation" novalidate>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <span class="error-message" ng-show="FirstTimePasswordFormValidation.FirstTimeSecurityQOne.$error.minlength"> minimum 10 character required. </span>
+                            <input type="text" class="form-control" ng-model="FirstTimeSecurityQOne" required name="FirstTimeSecurityQOne" id="FirstTimeSecurityQOne" ng-minlength=10 placeholder="Security Question 1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <span class="error-message" ng-show="FirstTimePasswordFormValidation.FirstTimeSecurityAOne.$error.minlength"> minimum 10 character required. </span>
+                            <input type="password" class="form-control" ng-model="FirstTimeSecurityAOne" required name="FirstTimeSecurityAOne" id="FirstTimeSecurityAOne" ng-minlength=10 placeholder="Security Answer 1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <span class="error-message" ng-show="FirstTimePasswordFormValidation.FirstTimeSecurityQTwo.$error.minlength"> minimum 10 character required. </span>
+                            <input type="text" class="form-control" ng-model="FirstTimeSecurityQTwo" required name="FirstTimeSecurityQTwo" id="FirstTimeSecurityQTwo" ng-minlength=10 placeholder="Security Question 2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <span class="error-message" ng-show="FirstTimePasswordFormValidation.FirstTimeSecurityATwo.$error.minlength"> minimum 10 character required. </span>
+                            <input type="password" class="form-control" ng-model="FirstTimeSecurityATwo" required name="FirstTimeSecurityATwo" id="FirstTimeSecurityATwo" ng-minlength=10 placeholder="Security Answer 2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="green">password should be numeric</div>
+                            <span class="error-message" ng-show="FirstTimePasswordFormValidation.FirstTimePasswordCurrent.$error.required  && FirstTimePasswordFormValidation.FirstTimePasswordCurrent.$dirty">password field should not be empty</span>
+                            <input type="password" pattern="[0-9]*" class="form-control" ng-model="FirstTimePasswordCurrent" name="FirstTimePasswordCurrent" required id="FirstTimePasswordCurrent" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <span class="error-message" ng-show="FirstTimePasswordFormValidation.FirstTimePasswordConfirm.$error.required  && FirstTimePasswordFormValidation.FirstTimePasswordConfirm.$dirty">please provide confirm password</span>
+                            <input type="password" pattern="[0-9]*" class="form-control" ng-model="FirstTimePasswordConfirm" name="FirstTimePasswordConfirm" id="FirstTimePasswordConfirm" required placeholder="Confirm Password">
+                        </div>
+                    </div>
+                    <div class="ftscroller-fix"></div>
+                    <div class="form-group">
+                        <div class="col-sm-10 text-align-center">
+                            <button type="submit" ng-click="createPwd()" data-dismiss="modal" ng-disabled="!FirstTimePasswordFormValidation.$valid" class="btn btn-default set-base-color1 set-color-white">
+                                Set Password
+                            </button>
+                            <button type="submit" data-dismiss="modal" class="btn btn-default">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

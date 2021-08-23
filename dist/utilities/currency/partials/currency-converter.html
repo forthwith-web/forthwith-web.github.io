@@ -1,0 +1,136 @@
+<div class="body-back">
+    <div class="fixed-header startup">
+        <div class="notes-header set-base-color2 set-color-white">
+            <a href="#HomePage" id="directMe" class="left-float"><span class="glyphicon glyphicon-th-large set-color-white" aria-hidden="true"></span></a>
+            Currency Converter
+        </div>
+    </div>
+    <div id="scrollable">
+        <div class="container currency-container margin-top-40">
+            <div class="alert alert-info" role="alert">
+                Offline Version - <span class="bold">Last updated</span> {{lastUpdated}}
+            </div>
+            <div class="well">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+                        <div class="input-group currency-offline-12">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="getConversionOffline()">
+                                    Go!
+                                </button> </span>
+                            <input type="text" pattern="[0-9]*" class="form-control" ng-model="totalCountOffline"  ng-focus="totalCountOffline = '';finalConversionDataOffline=''" placeholder="Search for...">
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 align-text-left col-xs-12">
+                        <div class="currency-offline-12">
+                            <div class="btn-group myCustomCurrencyList">
+                                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                                    {{fromCountryOffline}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="(abbr,fullName) in currencyListOffline">
+                                        <input type="radio" id="FromId{{$index}}" ng-model="$parent.fromCountryOffline" name="fromCountryOffline" value="{{abbr}}">
+                                        <label for="FromId{{$index}}">{{fullName}} - <span>{{abbr}}</span></label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="btn-group myCustomCurrencyList">
+                                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                                    {{toCountryOffline}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="(abbr,fullName) in currencyListOffline">
+                                        <input type="radio" id="ToId{{$index}}" ng-model="$parent.toCountryOffline" name="toCountryOffline" value="{{abbr}}">
+                                        <label for="ToId{{$index}}">{{fullName}} - <span>{{abbr}}</span></label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="input-group sync-option pull-right">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default" aria-label="Help">
+                                        <span data-container="body" data-toggle="popover" data-placement="bottom" data-content="Go online for synching, You can sync once in a two month only"><span class="glyphicon glyphicon-question-sign"></span></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default" ng-click="syncDatabaseForOffline()" ng-disabled="!isConnectionOk || !isOnceInTwoMonth">
+                                        Sync
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading bold">
+                        Result
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            <span class="high-data">{{totalCountOffline}}</span>&nbsp;{{fromCountryOffline}}&nbsp;equals&nbsp; <span class="bold"><span class="high-data">{{finalConversionDataOffline}}</span></span>&nbsp;{{toCountryOffline}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container currency-online-container">
+            <div class="alert alert-info" role="alert">
+                Online Version - <span class="bold">Attempt Remaining </span> {{attemptRemaining}} <span data-container="body" data-toggle="popover" data-placement="bottom" data-content="monthly 5 times you could check the current rate, for unlimited access you need to subscribe to our channel"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> </span>
+            </div>
+            <div class="well">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-3 col-md-3">
+                        <div class="input-group currency-offline-12">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="getConversion()" ng-disabled="attemptRemaining<0 || !isEnableGo">
+                                    Go!
+                                </button> </span>
+                            <input type="text" pattern="[0-9]*" class="form-control" ng-model="totalCount" ng-focus="totalCount = '';finalConversionData=''" placeholder="Search for...">
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 align-text-left">
+                        <div class="currency-offline-12">
+                            <div class="btn-group myCustomCurrencyList">
+                                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                                    {{fromCountry}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="(abbr,fullName) in currencyList">
+                                        <input type="radio" id="FromId{{$index}}" ng-model="$parent.fromCountry" name="fromCountry" value="{{abbr}}">
+                                        <label for="FromId{{$index}}">{{fullName}} - <span>{{abbr}}</span></label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="btn-group myCustomCurrencyList">
+                                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                                    {{toCountry}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="(abbr,fullName) in currencyList">
+                                        <input type="radio" id="ToId{{$index}}" ng-model="$parent.toCountry" name="toCountry" value="{{abbr}}">
+                                        <label for="ToId{{$index}}">{{fullName}} - <span>{{abbr}}</span></label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="input-group sync-option pull-right">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default" aria-label="Help">
+                                        <span data-container="body" data-toggle="popover" data-placement="left" data-content="Go Online for Latest Updates"><span class="glyphicon glyphicon-info-sign"></span></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading bold">
+                        Result
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            <span class="high-data">{{totalCount}}</span>&nbsp;{{fromCountry}}&nbsp;equals&nbsp; <span class="bold"><span class="high-data">{{finalConversionData}}</span></span>&nbsp;{{toCountry}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ftscroller-fix"></div>
+    </div>
+</div>

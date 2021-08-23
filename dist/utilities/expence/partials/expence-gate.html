@@ -1,0 +1,54 @@
+<div class="body-back set-cover-background">
+    <div class="fixed-header startup">
+        <div class="notes-header app-header set-base-color5 set-color-white">
+            <a href="#HomePage" id="directMe" class="left-float home-page-link"><img src="img/home.png"/></a>
+            Expentose
+            <a data-toggle="modal" data-target="#moreOnExpences" class="more-link pull-right"><img src="img/more-icon.png" /> </a>
+        </div>
+        <input type="text" ng-model="expenceSearch" class="search-box form-control-custom" placeholder="Search Expences"/>
+    </div>
+    <article class="list-collection margin-top-70">
+        <div class="row set-margin-none" ng-repeat="expence in dbExpences | filter:expenceSearch | orderBy:ExpenceAddedOn" ng-class="{deleteIt : expence.checkboxStatus}">
+            <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3 col-1 col-row">
+                <a class="arrow-link note-count" ng-show="!showCheckbox"><span>{{$index+1}}</span></a>
+                <label for="expenceCheck{{$index}}" class="" ng-show="showCheckbox">
+                    <input type="checkbox" id="expenceCheck{{$index}}" ng-model="expence.checkboxStatus" class="badgebox">
+                    <span class="badge">&check;</span></label>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6 col-2 col-row" ng-click="gotoViewExpences(expence.ExpenceId)">
+                <span class="notes-title">{{expence.ExpenceTitle}}</span><span class="notes-date-badge">{{expence.ExpenceAddedOn}}</span>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3 col-3 col-row">
+                <label class="fav-icon" ng-show="showFavIcon"> <img src="img/star-inactive-24.png" ng-if="expence.IsFavourite == 'false' || expence.IsFavourite == false" ng-click="markThisFavourite(expence,true);expence.IsFavourite=true;" alt="..." class="img-thumbnail img-check"> <img src="img/star-active-24.png" ng-if="expence.IsFavourite == 'true' || expence.IsFavourite == true" ng-click="markThisFavourite(expence,false);expence.IsFavourite=false;" class="img-thumbnail img-check">
+                </label>
+                <div class="daily-ex-info" ng-show="!showFavIcon && expentoTransOption">
+                    <span class="info daily-expense-count">{{expence.transactionTotal}}</span>&nbsp;|<span class="daily-expence-final-amount" ng-class="{'red' : expence.finalAmountToBeShow < 0 , 'green' : expence.finalAmountToBeShow > 0}">&nbsp;{{expence.finalAmountToBeShow}}</span>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<div class="modal fade" id="moreOnExpences" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <ul class="list-group custom-list">
+            <li class="list-group-item" ng-click="navigatePage('NewExpences')" ng-show="!showFavIcon && !showCheckbox"  data-dismiss="modal">
+                <a> New Expentose </a>
+            </li>
+            <li class="list-group-item" ng-show="!showFavIcon && recordStatus && !showCheckbox"  ng-click="markFavourite('ExpenceSec')" data-dismiss="modal">
+                <a> Mark Favourite </a>
+            </li>            
+            <li class="list-group-item" ng-show="!showCheckbox && recordStatus && !showFavIcon" ng-click="deleteExpences('ExpenceSec')" data-dismiss="modal">
+                <a> Delete Expentose </a>
+            </li>
+            <li class="list-group-item" ng-show="showCheckbox" ng-click="openDeleteOverlay()" data-dismiss="modal">
+                <a> Delete selected </a>
+            </li>
+            <li class="list-group-item" ng-show="recordStatus && !showFavIcon && !showCheckbox" ng-click="navigatePage('ViewFavExpences')" data-dismiss="modal">
+                <a> Favourite List </a>
+            </li>
+            <li class="list-group-item" ng-show="showFavIcon || showCheckbox" ng-click="cancelOperation()" data-dismiss="modal">
+                <a> Done </a>
+            </li>
+        </ul>
+    </div>
+</div>

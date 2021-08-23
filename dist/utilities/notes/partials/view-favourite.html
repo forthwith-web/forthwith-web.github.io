@@ -1,0 +1,45 @@
+<div class="body-back set-cover-background">
+    <div class="fixed-header startup">
+        <div class="notes-header app-header set-base-color1 set-color-white">
+            <a href="#NotesSec" id="directMe" class="left-float home-page-link"><span class="glyphicon glyphicon-chevron-left set-color-white" aria-hidden="true"></span></a>
+            Favourite Notes
+            <a data-toggle="modal" data-target="#moreOnNotesFav" class="more-link pull-right"><img src="img/more-icon.png" /> </a>
+        </div>
+        <input type="text" ng-model="notesSearch" class="search-box form-control-custom" placeholder="Search Notes"/>
+    </div>
+    <article class="list-collection margin-top-70">
+        <div class="row set-margin-none" ng-repeat="notes in dbNotes | filter:notesSearch | orderBy:NoteAddedOn">
+            <div class="col-sm-3 col-md-2 col-lg-3 col-xs-3 col-1 col-row">
+                <a class="arrow-link note-count" ng-show="!showCheckbox"><span>{{$index+1}}</span></a>
+                <label for="notesCheck{{$index}}" class="btn" ng-show="showCheckbox">
+                    <input type="checkbox" id="notesCheck{{$index}}" ng-model="notes.checkboxStatus" class="badgebox">
+                    <span class="badge">&check;</span></label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7 col-2 col-row" ng-click="gotoViewNotes(notes.NoteId)">
+                <span class="notes-title">{{notes.NoteTitle}}</span><span class="notes-date-badge">{{notes.NoteAddedOn}}</span>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2 col-3 col-row">
+                <label class="fav-icon" ng-show="showFavIcon"> <img src="img/star-inactive-24.png" ng-click="markThisFavourite(notes,true);notes.IsFavourite=true;" ng-if="notes.IsFavourite == 'false' || notes.IsFavourite == false" alt="..." class="img-thumbnail img-check"> <img src="img/star-active-24.png" ng-click="markThisFavourite(notes,false);notes.IsFavourite=false;" ng-if="notes.IsFavourite == 'true' || notes.IsFavourite == true" alt="..." class="img-thumbnail img-check">                 
+                </label>
+            </div>
+        </div>
+    </article>
+</div>
+<div class="modal fade" id="moreOnNotesFav" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <ul class="list-group custom-list">
+            <li class="list-group-item" ng-show="!recordStatus" ng-click="navigatePage('NotesSec')" data-dismiss="modal">
+                <a> No Favourite Notes - Go Back </a>
+            </li>
+            <li class="list-group-item" ng-show="!showFavIcon && recordStatus" ng-click="showFavIcon=!showFavIcon" data-dismiss="modal">
+                <a> Unmark Favourites </a>
+            </li>
+            <li class="list-group-item" ng-show="recordStatus" ng-click="navigatePage('NotesSec')" data-dismiss="modal">
+                <a> View All </a>
+            </li>
+            <li class="list-group-item" ng-show="recordStatus && showFavIcon" ng-click="showFavIcon=!showFavIcon" data-dismiss="modal">
+                <a> Done </a>
+            </li>           
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+<div class="body-back">
+    <div class="fixed-header startup">
+        <div class="notes-header app-header set-base-color4 set-color-white">
+            <a href="#PlaySec" id="directMe" class="left-float home-page-link"><span class="glyphicon glyphicon-chevron-left set-color-white" aria-hidden="true"></span></a>
+            Game Score<a href="#ViewPlayDetails/{{dataObj.GameId}}" class="set-padding-info"><span class="glyphicon glyphicon-th-large set-color-white glyphicon-info-sign" aria-hidden="true"></span></a>            
+            <a data-toggle="modal" class="xyz"  data-target="#myModalScore"><span class="glyphicon glyphicon-plus notes-plus-glyph set-color-white" ng-class="{hidePane: freezeGame==1}" aria-hidden="true"></span></a>
+        </div>
+    </div>
+    <div id="gameDetail" class="margin-top-35">
+        <div class="table-responsive">
+            <table class="table table-striped set-table-center">
+                <tr class="info">
+                    <th>Players</th><th ng-repeat="column in arr track by $index">{{column}}</th>
+                </tr>
+                <tr class="last-tr-game"></tr>
+                <tr ng-repeat="row in isolatePlayer track by $index" ng-click="updateMe(row)" data-toggle="modal" data-target="#myScoreUpdateDialogue">
+                    <td>{{$index+1}}</td><td ng-repeat="column in arr track by $index">{{row[$index]}}</td>
+                </tr>
+            </table>
+        </div>        
+    </div>
+    <div id="gameDetailFooter" class="startup">
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default green" ng-click="highestScoreOfThisGame()">
+                    Current Score
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default green" ng-click="openGameFreezeOverlay()">
+                    Freeze Game
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default green" ng-click="winnerOfThisGame()">
+                    Winner
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModalScore" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title green bold" id="myModalLabel">{{currentGamesTitle}}</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" name="GamesValidation" novalidate>
+                    <div class="form-group" ng-repeat="players in arr track by $index">
+                        <label for="playerName" class="set-line-height">{{players}}</label>
+                        <input type="number" class="form-control-expence set-custom-width" ng-maxlength=7 ng-model="playersScoreByName[$index]" placeholder="XXX" required id="playerName">
+                    </div>
+                </form>
+                <div class="ftscroller-fix"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-default set-base-color4 set-color-white" ng-disabled="!GamesValidation.$valid"  data-dismiss="modal" ng-click="updateScoreTable()">
+                    Submit
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myScoreUpdateDialogue" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title green bold" id="myModalLabel">{{currentGamesTitle}}</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" name="GamesUpdateValidation" novalidate>
+                    <div class="form-group" ng-repeat="players in arr track by $index">
+                        <label for="playerName" class="set-line-height">{{players}}</label>
+                        <input type="number" class="form-control-expence set-custom-width set-input-disable" ng-maxlength=7 ng-model="playersScoreByName[$index]" ng-disabled="isChecked" placeholder="XXX" required id="playerName">
+                    </div>
+                </form>
+                <div class="ftscroller-fix"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" data-dismiss="modal" class="btn btn-default set-base-color4 set-color-white" id="editMe" ng-disabled="!GamesUpdateValidation.$valid" ng-show="!isChecked" ng-click="updateCurrentScore();">
+                    Save
+                </button>
+                <button type="button" class="btn btn-default set-base-color4 set-color-white" ng-show="isChecked" ng-click="isChecked = !isChecked">
+                    Edit
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="openDeleteOverlay()">
+                    Delete
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

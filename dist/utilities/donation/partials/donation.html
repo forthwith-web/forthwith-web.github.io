@@ -1,0 +1,37 @@
+<div class="body-back">
+    <div class="notes-header app-header set-base-color1 set-color-white">
+        <a href="#HomePage" id="directMe" class="left-float  home-page-link"><img src="img/home.png"/></a>
+        Donate Money
+    </div>
+    <article>
+        <div class="container donate-contaner">
+            <form role="form" class="" name="DonationValidation" novalidate>
+                <p class="well set-green">Donate some money if you like this app</p>
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                      <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" ng-click="setMoney(5)">5 /-</button>
+                      </div>
+                      <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" ng-click="setMoney(10)">10 /-</button>
+                      </div>
+                      <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" ng-click="setMoney(25)">25 /-</button>
+                      </div>
+                      <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" ng-click="setMoney(50)">50 /-</button>
+                      </div>
+                      <div class="btn-group" role="group">
+                        <input type="number" class="btn btn-default set-color-black" ng-maxlength="4" required ng-model="customMoney" name="customMoney">
+                      </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10 text-align-center set-top-margin">                    
+                        <button type="Proceed" ng-click="donateMoney()" ng-disabled="!DonationValidation.$valid" class="btn btn-default set-base-color1 set-color-white">
+                            Donate {{customMoney}}/-
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </article>    
+</div>

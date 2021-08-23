@@ -1,0 +1,216 @@
+<div>
+    <div class="body-back startup">
+    <div class="fixed-header startup">
+        <div class="notes-header app-header set-base-color2 set-color-white">
+            <a href="#HomePage" id="directMe" class="left-float home-page-link"><img src="img/home.png"/></a>
+            EMI Calculator
+            <a href="" class="more-link pull-right"></a>
+        </div>
+    </div>
+<div id="">
+    <div class="emi-form-content margin-top-35" ng-show="EMIHomeDetails">
+        <form role="form" class="" name="EMIValidation" novalidate>
+            <div id="subdivision">
+            <div class="form-group">
+                <label for="LoanAmount" class="control-label">Loan Amount</label>
+                <div>
+                    <span class="error-message" ng-show="EMIValidation.LoanAmount.$error.pattern"> only numeric character allowed. </span>
+                    <span class="error-message" ng-show="EMIValidation.LoanAmount.$error.maxlength"> max 30 character allowed. </span>
+                    <span class="error-message" ng-show="EMIValidation.LoanAmount.$dirty && EMIValidation.LoanAmount.$error.required"> please enter loan amount. </span>
+                    <input type="text" class="form-control-custom" ng-model="LoanAmount" name="LoanAmount" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required ng-maxlength=30 id="LoanAmount" placeholder="Loan Amount">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Interest" class="control-label">Interest Rate</label>
+                <div>
+                    <span class="error-message" ng-show="EMIValidation.Interest.$error.pattern"> only numeric character allowed. </span>
+                    <span class="error-message" ng-show="EMIValidation.Interest.$error.maxlength"> max 30 character allowed. </span>
+                    <span class="error-message" ng-show="EMIValidation.Interest.$dirty && EMIValidation.Interest.$error.required"> please enter interest rate.</span>
+                    <input type="text" class="form-control-custom" ng-model="Interest" name="Interest" required ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" ng-maxlength=30 id="Interest" placeholder="Interest">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="PeriodYear" class="control-label">Period</label>
+                <div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                            <label for="PeriodYear" class="col-sm-2 control-label">Year</label>
+                            <div class="error-message" ng-show="EMIValidation.PeriodYear.$error.pattern">
+                                please enter valid period year.
+                            </div>
+                            <div class="error-message" ng-show="EMIValidation.PeriodYear.$dirty && EMIValidation.PeriodYear.$error.required">
+                                please enter period year.
+                            </div>
+                            <input type="text" class="form-control-custom" ng-model="PeriodYear" name="PeriodYear" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required id="PeriodYear">
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                            <label for="PeriodMonth" class="col-sm-2 control-label">Month</label>
+                            <div>
+                                <div class="btn-group myCustomEmiList">
+                                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                                        {{PeriodMonth}} <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <input type="radio" id="YearId" ng-model="PeriodMonth" name="PeriodMonth" value="0">
+                                            <label for="YearId">00</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="YearId1" ng-model="PeriodMonth" name="PeriodMonth" value="1">
+                                            <label for="YearId1">01</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="YearId2" ng-model="PeriodMonth" name="PeriodMonth" value="2">
+                                            <label for="YearId2">02</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="YearId3" ng-model="PeriodMonth" name="PeriodMonth" value="3">
+                                            <label for="YearId3">03</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="YearId4" ng-model="PeriodMonth" name="PeriodMonth" value="4">
+                                            <label for="YearId4">04</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="YearId5" ng-model="PeriodMonth" name="PeriodMonth" value="5">
+                                            <label for="YearId5">05</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="YearId6" ng-model="PeriodMonth" name="PeriodMonth" value="6">
+                                            <label for="YearId6">06</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="YearId7" ng-model="PeriodMonth" name="PeriodMonth" value="7">
+                                            <label for="YearId7">07</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="YearId8" ng-model="PeriodMonth" name="PeriodMonth" value="8">
+                                            <label for="YearId8">08</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="YearId9" ng-model="PeriodMonth" name="PeriodMonth" value="9">
+                                            <label for="YearId9">09</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="YearId10" ng-model="PeriodMonth" name="PeriodMonth" value="10">
+                                            <label for="YearId10">10</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="YearId11" ng-model="PeriodMonth" name="PeriodMonth" value="11">
+                                            <label for="YearId11">11</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="YearId12" ng-model="PeriodMonth" name="PeriodMonth" value="12">
+                                            <label for="YearId12">12</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="EMI" class="control-label">EMI</label>
+                <div>
+                    <span class="error-message" ng-show="EMIValidation.EMI.$error.pattern"> only numeric character allowed. </span>
+                    <span class="error-message" ng-show="EMIValidation.EMI.$error.maxlength"> max 30 character allowed. </span>
+                    <span class="error-message" ng-show="EMIValidation.EMI.$dirty && EMIValidation.EMI.$error.required"> EMI </span>
+                    <input type="text" class="form-control-custom emi-result" ng-model="EMI" name="EMI" disabled="disabled" id="EMI" placeholder="EMI">
+                </div>
+            </div>
+            <div class="form-group" ng-show="showMeLoanDetails">
+                <div class="form-content set-padding">
+                    <div class="panel panel-success loan-details">
+                        <div class="custom-modal-header set-base-color2 set-color-white">
+                            Loan Details
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-responsive">
+                                <thead>
+                                    <th>Amount For</th>
+                                    <th>INR</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Loan Taken</td>
+                                        <td>{{P}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Payable Amount</td>
+                                        <td>{{totalPayableAmount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Interest</td>
+                                        <td>{{totalInterest}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EMI</td>
+                                        <td>{{EMI}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panel-footer set-text-align-right">
+                            <a class="btn btn-default set-base-color1 set-color-white" ng-click="MoreDetails=!MoreDetails; EMIHomeDetails=!EMIHomeDetails;">More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="text-align-center">
+                    <button ng-click="calculateEMI()" ng-disabled="!EMIValidation.$valid" class="btn btn-default set-base-color1 set-color-white">
+                        Calculate EMI
+                    </button>
+                    <button ng-click="reset()" class="btn btn-default">
+                        Reset
+                    </button>
+                </div>
+            </div>
+                </div>
+        </form>
+    </div>
+    <div class="form-content margin-top-40 set-padding">
+        <form>
+            <div ng-show="MoreDetails">
+                <div class="form-group">
+                    <div class="panel panel-success loan-details">
+                        <div class="custom-modal-header set-base-color2 set-color-white">
+                            Loan Details
+                        </div>
+                        <div class="panel-body table-responsive" id="makePrint">
+                            <table class="table">
+                                <thead>
+                                    <th class="green">EMI No.</th>
+                                    <th class="green">Begining Balance</th>
+                                    <th class="green">EMI</th>
+                                    <th class="green">Principal</th>
+                                    <th class="green">Interest</th>
+                                    <th class="green">Ending Balance</th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="emis in EMIs">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{emis.Beg}}</td>
+                                        <td>{{emis.Emi}}</td>
+                                        <td>{{emis.Pri}}</td>
+                                        <td>{{emis.Int}}</td>
+                                        <td>{{emis.End}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panel-footer set-text-align-right">
+                            <a class="btn btn-default set-base-color1 set-color-white hide-me-download" ng-click="initializeDownloading()">Download</a>&nbsp;&nbsp;
+                            <a class="btn btn-default green" ng-click="MoreDetails=!MoreDetails; EMIHomeDetails=!EMIHomeDetails;">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="ftscroller-fix"></div>
+    </div>
+</div>

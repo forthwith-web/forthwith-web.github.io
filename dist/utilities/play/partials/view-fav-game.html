@@ -1,0 +1,47 @@
+<div class="body-back set-cover-background">
+    <div class="notes-header app-header set-base-color4 set-color-white">
+        <a href="#PlaySec" id="directMe" class="left-float home-page-link"><span class="glyphicon glyphicon-chevron-left set-color-white" aria-hidden="true"></span></a>
+        Favourite Game's
+        <a data-toggle="modal" data-target="#moreOnPlay" class="more-link pull-right"><img src="img/more-icon.png" /> </a>
+    </div>
+    <input type="text" ng-model="playSearch" class="search-box form-control-custom" placeholder="Search Game"/>
+    <article class="list-collection">
+        <div class="row set-margin-none hide-me" ng-repeat="plays in dbPlays | filter:playSearch | orderBy:GamePlayedOn">
+            <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3 col-1 col-row">
+                <a class="arrow-link note-count" ng-show="!showCheckbox"><span>{{$index+1}}</span></a>
+                <label for="playsCheck{{$index}}" class="btn" ng-show="showCheckbox">
+                    <input type="checkbox" id="playsCheck{{$index}}" ng-model="plays.checkboxStatus" class="badgebox">
+                    <span class="badge">&check;</span></label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7 col-xs-7 col-2 col-row" ng-click="gotoViewPlays(plays.GameId)">
+                <span class="notes-title">{{plays.GameTitle}}</span><span class="notes-date-badge">{{plays.GamePlayedOn}}</span>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2 col-3 col-row">
+                <label class="fav-icon" ng-show="showFavIcon"> <img src="img/star-inactive-24.png" ng-if="plays.IsFavourite == 'false' || plays.IsFavourite == false" ng-click="markThisFavourite(plays,true);plays.IsFavourite=true;" class="img-thumbnail img-check"> <img src="img/star-active-24.png" ng-if="plays.IsFavourite == 'true' || plays.IsFavourite == true" ng-click="markThisFavourite(plays,false);plays.IsFavourite=false;" class="img-thumbnail img-check">
+                    <input type="checkbox" ng-model="plays.IsFavourite" ng-checked="{{plays.IsFavourite}}" name="play-fav{{$index}}" id="play-fav{{$index}}" value="val{{$index}}" class="hidden" autocomplete="off">
+                </label>
+                <div class="player-winner-info green" ng-show="!showFavIcon">
+                    <a tabindex="0" id="playerWinnerNeedRefresh" data-container="body" class="set-color-white green no-outline" data-trigger="focus" role="button" data-toggle="popover" data-placement="left" data-content="Winner's Name - {{plays.WinnersName}}"><span class="glyphicon glyphicon-info-sign"></span></a>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<div class="modal fade" id="moreOnPlay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <ul class="list-group custom-list">
+            <li class="list-group-item" ng-click="navigatePage('PlaySec')" ng-show="!recordStatus" data-dismiss="modal">
+                <a> No Favourite Game - Go Back </a>
+            </li>
+            <li class="list-group-item" ng-show="!showFavIcon && recordStatus"  ng-click="showFavIcon = !showFavIcon" data-dismiss="modal">
+                <a> Unmark Favourites </a>
+            </li>
+             <li class="list-group-item" ng-show="recordStatus" ng-click="navigatePage('PlaySec')" data-dismiss="modal">
+                <a> View All Records </a>
+            </li>
+            <li class="list-group-item" ng-show="recordStatus && showFavIcon" ng-click="showFavIcon=!showFavIcon" data-dismiss="modal">
+                <a> Done </a>
+            </li> 
+        </ul>
+    </div>
+</div>

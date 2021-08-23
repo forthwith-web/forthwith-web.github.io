@@ -1,0 +1,79 @@
+<div>
+    <div class="body-back startup">
+     <div class="fixed-header startup">
+        <div class="notes-header app-header set-base-color4 set-color-white">
+            <a href="#PlaySec" id="directMe" class="left-float home-page-link"><span class="glyphicon glyphicon-chevron-left set-color-white" aria-hidden="true"></span></a>
+            New Game
+            <a href="" class="more-link pull-right"></a>
+        </div>
+    </div>
+<div id="scrollable">
+    <div class="set-top-margin">
+        <form role="form" class="generic-form-group highlight-error" name="GamesValidation" novalidate>
+            <div class="form-group col-sm-12">
+                <label for="GamesTitle" class="col-sm-2 control-label">Game Title</label>
+                <div class="col-sm-10">
+                    <span class="error-message" ng-show="GamesValidation.GamesTitleField.$error.maxlength"> max 20 character allowed. </span>
+                    <span class="error-message" ng-show="GamesValidation.GamesTitleField.$dirty && GamesValidation.GamesTitleField.$error.required"> please enter game title. </span>
+                    <input type="text" class="form-control-custom" ng-model="GamesTitleField" name="GamesTitleField" required ng-maxlength=20 id="GamesTitleField" placeholder="Game Title">
+                </div>
+            </div>
+            <div class="form-group col-sm-12">
+                <label for="GamesDesc" class="col-sm-3 control-label">Games Description </label>
+                <div class="col-sm-9">
+                    <span class="error-message" ng-show="GamesValidation.GamesDescField.$error.maxlength"> max 500 character allowed. </span>                   
+                    <input type="text" class="form-control-custom" ng-model="GamesDescField" name="GamesDescField" ng-maxlength=500 placeholder="The One Who Lose The Game Will Pay For Tommorrow BreakFast">
+                </div>
+            </div>
+            <div class="form-group col-sm-12">
+                <label for="GamesDesc" class="col-sm-2 control-label">Who's Winner</label>
+                <div class="col-sm-10">
+                    <span class="error-message" ng-show="GamesValidation.GameWhoWinner.$dirty && GamesValidation.GameWhoWinner.$error.required"> please seLect atleast one </span> 
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                            <div class="input-group">
+                              <span class="input-group-addon">
+                                <input type="radio" ng-model="GameWhoWinner" required value="high" name="GameWhoWinner" aria-label="...">
+                              </span>
+                              <input type="text" class="form-control" disabled Placeholder="HighScorer Winner" aria-label="...">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                            <div class="input-group">
+                              <span class="input-group-addon">
+                                <input type="radio" ng-model="GameWhoWinner" required value="low" name="GameWhoWinner" aria-label="...">
+                              </span>
+                              <input type="text" class="form-control" disabled Placeholder="LowScorer Winner" aria-label="...">
+                            </div>
+                        </div>
+                    </div>              
+                </div>
+            </div>
+            <div class="form-group col-sm-12">
+                <label for="PlayerCount" class="col-sm-3 control-label">Player Count</label>
+                <div class="col-sm-9">
+                    <span class="error-message" ng-show="GamesValidation.PlayerCountField.$dirty && GamesValidation.PlayerCountField.$error.required"> please select number of player. </span>
+                    <select class="form-control-custom"
+                    ng-model="PlayerCount" name="PlayerCountField" required
+                    ng-options="count.lookupCode as count.description for count in lov_state" selected value="{{PlayerCount}}" ng-change="getNumber(PlayerCount)"></select>
+                    <tt>Count: {{PlayerCount}}</tt>
+                </div>
+            </div>
+            <div class="form-group col-sm-12">
+                <label for="PlayerName" class="col-sm-2 control-label">Player Names </label>
+                <span ng-hide="GamesValidation.$valid" class="error-message set-green set-lr-padding col-sm-12 col-lg-12 col-xs-12 col-md-12"> max 10 character allowed for all players name. </span>
+                <div class="col-sm-10 margin-top-bottom-10" ng-repeat="i in countIncrease">
+                    <input type="text" class="form-control-custom" name="PlayerField" id="PlayerField{{i}}" ng-model="playerParameters['plr'+i]" required ng-maxlength=10 placeholder="Player {{$index+1}}">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 text-align-right set-btn-padding">
+                <button type="submit" ng-click="addGamesFire()" ng-disabled="!GamesValidation.$valid" class="btn btn-default set-base-color1 set-color-white">
+                    Lets Go!!
+                </button>
+            </div>            
+        </form>
+    </div>
+<div class="ftscroller-fix"></div>
+</div>
+</div>
+</div>

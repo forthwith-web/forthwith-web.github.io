@@ -1,0 +1,232 @@
+<span id="directMe" href="exitMe"></span>
+<div id="st-container" class="st-container">
+  <nav class="st-menu st-effect-1" ng-click="toggleSidebar()" id="menu-1">
+    <h2 class="icon icon-lab">Forthwith</h2>
+    <ul>
+      <li>
+        <a href="#NotesSec">My Diary</a>
+      </li>
+      <li>
+        <a href="#ExpenceSec">Expentose</a>
+      </li>
+      <li>
+        <a href="#DailyExpenceSec">Dailytose</a>
+      </li>
+      <li>
+        <a href="#PlaySec">Record Game</a>
+      </li>
+      <li>
+        <a href="#EmiSec">EMI</a>
+      </li>
+      <!--<li>
+                <a href="#CurrencySec">Currency Conversion</a>
+            </li>-->
+      <li>
+        <a href="#SettingSec">Settings</a>
+      </li>
+      <!--<li>
+                <a href="#AboutSec">About Us</a>
+            </li>-->
+      <li>
+        <a
+          data-toggle="modal"
+          data-target="#shareOnSocialMedia"
+          class="more-link"
+          >Share App</a
+        >
+      </li>
+      <li>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.repos.forthwith"
+          >Rate This App</a
+        >
+      </li>
+      <!--<li>
+                <a href="#Donation">Donate Money</a>
+            </li>-->
+    </ul>
+  </nav>
+  <div class="st-pusher" ng-init="loadTracker()">
+    <div class="slide-icon" ng-click="toggleSidebar()">
+      <img src="img/slide_right.svg" />
+    </div>
+    <div class="swiper-container gallery-top">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background-image: url(img/notes.jpg)">
+          <div class="utility-quote">
+            “We do not remember days, we remember moments...”
+          </div>
+          <div class="utility-text">
+            <a href="#NotesSec" class="btn set-base-color1 set-color-white"
+              >Let's add in diary...</a
+            >
+          </div>
+        </div>
+        <div
+          class="swiper-slide"
+          style="background-image: url(img/expences.jpg)"
+        >
+          <div class="utility-quote">
+            “Balancing your money is the key to having enough...”
+          </div>
+          <div class="utility-text">
+            <a href="#ExpenceSec" class="btn set-base-color1 set-color-white"
+              >Let's balance it...</a
+            >
+          </div>
+        </div>
+        <div
+          class="swiper-slide"
+          style="background-image: url(img/dailyexpences.jpeg)"
+        >
+          <div class="utility-quote">
+            “A penny saved is not a penny earned if at the end of the day you
+            still owe a quarter...”
+          </div>
+          <div class="utility-text">
+            <a
+              href="#DailyExpenceSec"
+              class="btn set-base-color1 set-color-white"
+              >Let's save some...</a
+            >
+          </div>
+        </div>
+        <div class="swiper-slide" style="background-image: url(img/games.jpg)">
+          <div class="utility-quote">
+            “I take a life with Good Food, Good Friends, a glass of Wine & a
+            good Game...”
+          </div>
+          <div class="utility-text">
+            <a href="#PlaySec" class="btn set-base-color1 set-color-white"
+              >Let's play...</a
+            >
+          </div>
+        </div>
+        <div class="swiper-slide" style="background-image: url(img/emi.jpg)">
+          <div class="utility-quote">
+            “Those carrying a credit card balance should scale back to making
+            the minimum payment each month so they have more money to put into
+            savings...”
+          </div>
+          <div class="utility-text">
+            <a href="#EmiSec" class="btn set-base-color1 set-color-white"
+              >Lets EMI...</a
+            >
+          </div>
+        </div>
+        <!--<div class="swiper-slide" style="background-image:url(img/awaited.jpg)"><div class="utility-quote">“It's not so unusual to run out of someone else's currency...”</div><div class="utility-text"><a href="#CurrencySec">Lets check currency...</a></div></div>-->
+        <div class="swiper-slide" style="background-image: url(img/share.jpg)">
+          <div class="utility-quote">
+            “Love only grows by sharing. You can only have more for yourself by
+            giving it away to others...”
+          </div>
+          <div class="utility-text">
+            <a
+              data-toggle="modal"
+              data-target="#shareOnSocialMedia"
+              class="more-link btn set-base-color1 set-color-white"
+              >Lets share with others...</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-next swiper-button-white"></div>
+      <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+    <div
+      class="
+        swiper-container
+        hide-this-block
+        swiper-bottom-container
+        gallery-thumbs
+      "
+    >
+      <div class="swiper-wrapper">
+        <div
+          class="swiper-slide"
+          style="background-image: url(img/awaited.jpg)"
+        ></div>
+        <div
+          class="swiper-slide"
+          style="background-image: url(img/awaited.jpg)"
+        ></div>
+        <div
+          class="swiper-slide"
+          style="background-image: url(img/awaited.jpg)"
+        ></div>
+        <div
+          class="swiper-slide"
+          style="background-image: url(img/awaited.jpg)"
+        ></div>
+        <div
+          class="swiper-slide"
+          style="background-image: url(img/awaited.jpg)"
+        ></div>
+        <div
+          class="swiper-slide"
+          style="background-image: url(img/awaited.jpg)"
+        ></div>
+        <div
+          class="swiper-slide"
+          style="background-image: url(img/awaited.jpg)"
+        ></div>
+        <div
+          class="swiper-slide"
+          style="background-image: url(img/awaited.jpg)"
+        ></div>
+        <div
+          class="swiper-slide"
+          style="background-image: url(img/awaited.jpg)"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="shareOnSocialMedia"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+>
+  <div class="modal-dialog social-media-popup" role="document">
+    <ul class="list-group custom-list">
+      <li
+        class="list-group-item"
+        ng-click="shareOnWhatsapp()"
+        data-dismiss="modal"
+      >
+        <a> Whatsapp </a>
+      </li>
+      <li
+        class="list-group-item"
+        ng-click="shareOnFacebook()"
+        data-dismiss="modal"
+      >
+        <a> Facebook </a>
+      </li>
+      <li
+        class="list-group-item"
+        ng-click="shareOnEmail()"
+        data-dismiss="modal"
+      >
+        <a> Email </a>
+      </li>
+      <li
+        class="list-group-item"
+        ng-click="shareOnInstagram()"
+        data-dismiss="modal"
+      >
+        <a> Instagram </a>
+      </li>
+      <li
+        class="list-group-item"
+        ng-click="shareOnMessage()"
+        data-dismiss="modal"
+      >
+        <a> Message </a>
+      </li>
+    </ul>
+  </div>
+</div>

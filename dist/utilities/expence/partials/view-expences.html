@@ -1,0 +1,153 @@
+<div class="body-back set-cover-background">
+    <div class="fixed-header startup">
+        <div class="notes-header app-header set-base-color5 set-color-white">
+            <!--Before Iphone Build-->
+            <!--<span><span class="set-color-white set-position">{{totalCrs}}</span><span class="bold set-green set-fix-for-crdr"> Cr's</span></span>
+            <a href="#ExpenceSec" id="directMe" class="left-float home-page-link"><span class="glyphicon glyphicon-chevron-left set-color-white" aria-hidden="true"></span></a>        
+            <a href="#ViewDetails/{{expDataObj.ExpenceRefId}}" class="set-padding-info"><span class="glyphicon set-fix-for-crdr glyphicon-th-large set-color-white glyphicon-info-sign" aria-hidden="true"></span></a>
+            <span><span class="set-color-white set-position">{{totalDrs}}</span><span class="bold red set-fix-for-crdr"> Dr's</span></span>
+            <a data-toggle="modal" data-target="#moreOption" class="right-float hide-me-download"><span class="glyphicon glyphicon-download-alt glyphicon-th-large set-color-white" aria-hidden="true"></span></a>-->
+            <div class="pull-left list-expence-header list-expence-header--home">
+                <a href="#ExpenceSec" id="directMe" class="left-float home-page-link"><span class="glyphicon glyphicon-chevron-left set-color-white" aria-hidden="true"></span></a>        
+            </div>
+            <div class="pull-left list-expence-header list-expence-header--cr">
+                <span><span class="set-color-white set-position">{{totalCrs}}</span><span class="bold set-green set-fix-for-crdr"> Cr's</span></span>
+            </div>            
+            <div class="pull-left list-expence-header list-expence-header--dr">
+            <span><span class="set-color-white set-position">{{totalDrs}}</span><span class="bold red set-fix-for-crdr"> Dr's</span></span>
+            </div>
+            <div class="pull-left list-expence-header list-expence-header--info">
+                <a href="#ViewDetails/{{expDataObj.ExpenceRefId}}" class="set-padding-info"><span class="glyphicon glyphicon-th-large set-color-white glyphicon-info-sign" aria-hidden="true"></span></a>
+            </div>
+            <!--<div class="pull-left list-expence-header">
+                <a data-toggle="modal" data-target="#moreOption" class="right-float hide-me-download"><span class="glyphicon glyphicon-download-alt glyphicon-th-large set-color-white" aria-hidden="true"></span></a>
+            </div>-->
+        </div>
+    </div>
+    <div class="margin-top-35">
+        <div id="scrollable">
+            <div class="Area" id="deleteIt{{$index}}" ng-repeat="crdrData in dbExpenTosCrDr">
+                <div ng-click="updateSelected(crdrData,$index)" class="table-layout">
+                    <div class="text-amount" ng-class = "{L : '{{crdrData.ExpenceDr}}'==='', R : '{{crdrData.ExpenceCr}}'===''}">
+                        <a ng-show="{{crdrData.ExpenceDr == ''}}">{{crdrData.ExpenceCr}}</a>
+                        <a ng-show="{{crdrData.ExpenceCr == ''}}">{{crdrData.ExpenceDr}}</a>
+                    </div>
+                    <div class="text" ng-class = "{R : '{{crdrData.ExpenceDr}}'==='', L : '{{crdrData.ExpenceCr}}'==='', textR : '{{crdrData.ExpenceDr}}'==='', textL : '{{crdrData.ExpenceCr}}'===''}">
+                        <span class="no-word-wrap" ng-show="{{crdrData.ExpenceDr == ''}}">{{crdrData.ExpenceCrDesc}}</span>
+                        <span class="no-word-wrap"ng-show="{{crdrData.ExpenceCr == ''}}">{{crdrData.ExpenceDrDesc}}</span>
+                    </div>
+                </div>
+            </div>        
+            <div class="Area"></div>
+            <div class="ftscroller-fix"></div>
+        </div>
+    </div>
+    <div class="expence-entry-sec" data-ng-init="focusCr=true;focusDr=true;focusCrText=false;focusDrText=false;">
+        <form role="form" class="form-horizontal" id="makeNewEntryExpence"  name="ExpenceCrDrValidation" novalidate>
+            <span class="error-message" ng-show="ExpenceCrDrValidation.ExpenceCrAmountField.$dirty && ExpenceCrDrValidation.ExpenceCrAmountField.$error.pattern || ExpenceCrDrValidation.ExpenceDrAmountField.$dirty && ExpenceCrDrValidation.ExpenceDrAmountField.$error.pattern"> Please enter a valid amount </span>
+            <div ng-show="focusDrText || focusCrText" class="close-me" ng-click="resetExpences()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+            <input type="text" class="cr-number cr-dr form-control-expence" ng-pattern="/^([0-9]{1,10})(\.[0-9]{1,2})?$/" ng-class="{setcr:focusCrText}" ng-model="ExpenceCrAmountField" name="ExpenceCrAmountField" placeholder="Cr" placeholder="Cr" ng-show="focusCr" ng-focus="openCrOverlay()"/>
+            <input type="text" class="cr-text form-control-expence" name="cr-text" placeholder="Comments" ng-model="ExpenceCrTextField" ng-show="focusCrText"/>
+            <input type="text" class="dr-number cr-dr form-control-expence" ng-pattern="/^([0-9]{1,10})(\.[0-9]{1,2})?$/"  id="dr-number" ng-class="{setcr:focusDrText}" name="ExpenceDrAmountField" ng-model="ExpenceDrAmountField" ng-show="focusDr"  placeholder="Dr" ng-focus="openDrOverlay()" />
+            <input type="text" class="dr-text form-control-expence" name="dr-text" placeholder="Comments" ng-model="ExpenceDrTextField" ng-show="focusDrText"/>
+            <button type="submit" class="submit-arrow" ng-click="addExpenceCrDrFire()" ng-disabled="!ExpenceCrDrValidation.$valid" ng-show="focusDrText || focusCrText">
+                <img src="img/next.png"/>
+            </button>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="myExpenceModalView" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="panel panel-info">
+                    <div class="set-base-color5 custom-modal-header set-color-white">
+                        Expence Info
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>For</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Last Updated</td>
+                                        <td>{{latestUpdate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description</td>
+                                        <td class="initial-white-space">{{latestExpenceTitle}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Amount</td>
+                                        <td>{{latestExpenceDesc}}/-</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="editCurrentExpence()" class="btn btn-default" data-dismiss="modal">
+                    Edit
+                </button>
+                <button type="button" class="btn btn-default" ng-click="openDeleteOverlay()"  data-dismiss="modal">
+                    Delete
+                </button>
+                <button type="button" class="btn btn-default set-base-color1 set-color-white" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myExpenceModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="form-content">
+                <form role="form" class="form-horizontal" name="ExpenceValidation" novalidate>
+                    <div class="form-group">
+                        <label for="latestExpenceTitle" class="col-sm-2 control-label">Expence Description</label>
+                        <div class="col-sm-10">
+                            <span class="error-message" ng-show="ExpenceValidation.latestExpenceTitle.$dirty && ExpenceValidation.latestExpenceTitle.$error.required"> please enter expence details. </span>
+                            <textarea class="form-control" ng-model="latestExpenceTitle" name="latestExpenceTitle" required id="latestExpenceTitle" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="latestExpenceDesc" class="col-sm-2 control-label">Expence Amount </label>
+                        <div class="col-sm-10">
+                            <span class="error-message" ng-show="ExpenceValidation.latestExpenceDesc.$dirty && ExpenceValidation.latestExpenceDesc.$error.required"> amount should be numeric. </span>
+                            <span class="error-message" ng-show="ExpenceValidation.latestExpenceDesc.$dirty && ExpenceValidation.latestExpenceDesc.$error.pattern"> please enter a valid amount. </span>
+                            <input type="text"  ng-pattern="/^([0-9]{1,10})(\.[0-9]{1,2})?$/"  class="form-control" ng-model="latestExpenceDesc" name="latestExpenceDesc" required>
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="submit" ng-click="updateCurrentExpences(currrentExpenceObj,flagField)" ng-disabled="!ExpenceValidation.$valid" class="btn btn-default set-base-color1 set-color-white">
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="moreOption" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <ul class="list-group custom-list">
+            <li class="list-group-item" ng-click="startBackup()" data-dismiss="modal">
+                <a> Download a copy </a>
+            </li>
+        </ul>
+    </div>
+</div>
